@@ -80,15 +80,6 @@ public class TwoWordsTests
         suggestions2.ShouldBe(new[] { "abada" }, Case.Sensitive);
     }
 
-    //[Fact]
-    //public void ExcludePreviousWrongLetters()
-    //{
-    //    var words = new Words("pt-BR", new[] { "abada", "abade", "abado", "abato", "abone" }); // abone
-    //    var suggestions1 = words.Suggest(new Word(new('a', Green), new('b', Green), new('e', Yellow), new('d', None), new('o', Yellow))); // abedo
-    //    suggestions1.ShouldBe(new[] { "abato", "abone" }, Case.Sensitive);
-    //    var suggestions2 = words.Suggest(new Word(new('a', Green), new('b', Green), new('a', None), new('n', None), new('e', Yellow))); // abane
-    //    suggestions2.ShouldBe(new[] { "abone" }, Case.Sensitive);
-    //}
 }
 
 public class FirstLetterTests

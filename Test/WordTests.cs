@@ -40,15 +40,6 @@ public class WordMatchTests
     [Fact] public void ExcludePreviousWrongLetters3() => Word.FromString("agbgdnanln").Matches("abado").ShouldBeFalse(); // abdal
     [Fact] public void ExcludePreviousWrongLetters4() => Word.FromString("agbgdnanln").Matches("abate").ShouldBeFalse(); // abdal
     [Fact] public void ExcludePreviousWrongLettersMatches() => Word.FromString("agbgdnanln").Matches("abone").ShouldBeTrue(); // abdal
-
-    [Fact] public void ExcludeX() => Word.FromString("agbgendnay").Matches("abafo").ShouldBeTrue(); // abeda
-    [Fact] public void ExcludeY() => Word.FromString("agbgaydnen").Matches("abono").ShouldBeFalse(); // abade
-
-    //[Fact]
-    //public void ExcludePreviousWrongLetters()
-    //{
-    //    var words = new Words("pt-BR", new[] { "abada", "abade", "abado", "abate", "abone" }); // abone
-    //    var suggestions1 = words.Suggest(new Word(new('a', Green), new('b', Green), new('d', None), new('a', None), new('l', None))); // abdal
-    //    suggestions1.ShouldBe(new[] { "abone" }, Case.Sensitive);
-    //}
+    [Fact] public void YellowIsInludedInWord() => Word.FromString("agbgendnay").Matches("abafo").ShouldBeTrue(); // abeda
+    [Fact] public void YellowIsIncludedInGreenShouldBeExcluded() => Word.FromString("agbgaydnen").Matches("abono").ShouldBeFalse(); // abade
 }

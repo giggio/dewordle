@@ -1,7 +1,21 @@
-﻿var wordsFile = args[0];
-var wordsCsvText = File.ReadAllLines(wordsFile)[0];
-// read csv from text file
-var wordList = wordsCsvText.Split(',').Select(w => w.Trim()[1..^1]).ToList();
+﻿string? wordsFile = null;
+if (args.Length > 0)
+{
+    wordsFile = args[0];
+}
+else
+{
+    var wordsFiles = new[] { "word.txt", "ptBR-all.txt" };
+    var dirs = new[] { Environment.CurrentDirectory, Path.Combine(Environment.CurrentDirectory, ".."), Path.Combine(Environment.CurrentDirectory, "..", "words"), Path.Combine(Environment.CurrentDirectory, "words") };
+    wordsFile = dirs.SelectMany(dir => wordsFiles.Select(f => Path.GetFullPath(Path.Combine(dir, f)))).Where(f => File.Exists(f)).OrderBy(f => f).FirstOrDefault();
+}
+if (wordsFile is null)
+{
+    Error.WriteLine("Could not find words file.");
+    return 1;
+}
+WriteLine($"Reading words from {wordsFile}...");
+var wordList = File.ReadAllLines(wordsFile);
 var words = new Words("pt-BR", wordList);
 WriteLine($"Your first word could be: '{words.SuggestRandomWord()}'.");
 const string instructions = "Inform results with letter-color pairs, example, word 'aboar' where the first two letters are green, the 3rd and 5th are yellow, and the 4th does not match (spaces are optional):";
@@ -52,3 +66,4 @@ while (true)
     }
 }
 WriteLine("Done!");
+return 0;

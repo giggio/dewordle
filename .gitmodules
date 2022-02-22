@@ -1,0 +1,6 @@
+[submodule "words/termo"]
+	path = words/termo
+	url = https://github.com/fserb/pt-br.git
+[submodule "words/libreoffice"]
+	path = words/libreoffice
+	url = https://github.com/LibreOffice/dictionaries.git
