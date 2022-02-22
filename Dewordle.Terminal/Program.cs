@@ -33,11 +33,10 @@ while (true)
     }
     if (result == "exit")
         break;
-    List<string>? suggestedWords;
-    List<string>? otherWords;
+    List<string>? suggestedWords, otherWords, unmatched;
     try
     {
-        (suggestedWords, otherWords) = words.Suggest(Word.FromString(result));
+        (suggestedWords, otherWords, unmatched) = words.Suggest(Word.FromString(result));
     }
     catch (Exception ex) when (ex is WordParseException || ex is LetterParseException)
     {
@@ -63,6 +62,15 @@ while (true)
             var word = otherWords[i];
             Write(word);
             if (i != otherWords.Count - 1)
+                Write(", ");
+        }
+        WriteLine();
+        WriteLine("Unmatched words are:");
+        for (int i = 0; i < unmatched.Count; i++)
+        {
+            var word = unmatched[i];
+            Write(word);
+            if (i != unmatched.Count - 1)
                 Write(", ");
         }
         WriteLine();

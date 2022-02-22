@@ -1,6 +1,6 @@
 ﻿using static Dewordle.Model.Color;
-using System.Linq;
 using System.Text;
+using System.Linq;
 using System.Globalization;
 
 namespace Dewordle.Model;
@@ -8,6 +8,8 @@ public class Words
 {
     private readonly string language;
     private List<string> wordList;
+    private readonly List<string> originalWordList;
+    private readonly List<string> originalWordListWithDistinctChars;
     private readonly List<Word> wordsAlreadyTried = new();
     private List<string>? wordsWithUniqueLetters;
 
@@ -15,6 +17,8 @@ public class Words
     {
         this.language = language; // todo: check most use letters and use that to suggest better words
         this.wordList = wordList.OrderBy(w => w).ToList();
+        originalWordList = this.wordList;
+        originalWordListWithDistinctChars = originalWordList.Where(w => w.Distinct().Count() == 5).ToList();
     }
 
     public Suggestion Suggest(Word word)
@@ -26,7 +30,9 @@ public class Words
         wordList = words;
         var preferred = words.Where(w => w.Distinct().Count() == 5).ToList();
         var others = words.Except(preferred).ToList();
-        return new(preferred, others);
+        var allTriedChars = wordsAlreadyTried.SelectMany(w => w.Chars).Distinct().OrderBy(c => c).ToList();
+        var unmatched = originalWordListWithDistinctChars.Where(w => !w.Any(c => allTriedChars.Contains(c))).ToList();
+        return new(preferred, others, unmatched);
     }
 
     public string SuggestRandomWord()
@@ -37,7 +43,7 @@ public class Words
     }
 }
 
-public record struct Suggestion(List<string> Preferred, List<string> Others);
+public record struct Suggestion(List<string> Preferred, List<string> Others, List<string> unmatched);
 
 public record struct Word(Letter L0, Letter L1, Letter L2, Letter L3, Letter L4)
 {
@@ -110,6 +116,8 @@ public record struct Word(Letter L0, Letter L1, Letter L2, Letter L3, Letter L4)
             chars.Add(word[4]);
         return new string(chars.ToArray());
     }
+
+    public char[] Chars => new[] { L0.Character, L1.Character, L2.Character, L3.Character, L4.Character };
 }
 
 public record Letter
