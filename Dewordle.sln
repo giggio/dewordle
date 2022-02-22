@@ -13,9 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dewordle.Terminal", "Deword
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67772714-5453-40AB-B28F-49C234E7457A}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		.gitmodules = .gitmodules
+		.github\workflows\build.yml = .github\workflows\build.yml
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global

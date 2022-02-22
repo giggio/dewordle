@@ -1,0 +1,12 @@
+<!-- todo: needed until https://github.com/dotnet/sourcelink/issues/572 is fixed -->
+<Project>
+    <PropertyGroup>
+        <TargetFrameworkMonikerAssemblyAttributesPath>$([System.IO.Path]::Combine('$(IntermediateOutputPath)','$(TargetFrameworkMoniker).AssemblyAttributes$(DefaultLanguageSourceExtension)'))</TargetFrameworkMonikerAssemblyAttributesPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <EmbeddedFiles Include="$(GeneratedAssemblyInfoFile)"/>
+        <EmbeddedFiles Include="$(GeneratedGlobalUsingsFile)"/>
+        <EmbeddedFiles Include="$(TargetFrameworkMonikerAssemblyAttributesPath)"/>
+    </ItemGroup>
+</Project>
+

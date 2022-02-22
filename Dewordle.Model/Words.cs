@@ -1,6 +1,5 @@
-﻿using static Dewordle.Model.Color;
+using static Dewordle.Model.Color;
 using System.Text;
-using System.Linq;
 using System.Globalization;
 
 namespace Dewordle.Model;
