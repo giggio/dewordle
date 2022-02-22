@@ -17,17 +17,16 @@ public class Words
         this.wordList = wordList.OrderBy(w => w).ToList();
     }
 
-    public List<string> Suggest(Word word)
+    public Suggestion Suggest(Word word)
     {
-        var words = new List<string>();
-        foreach (var tentativeWord in wordList)
-        {
-            if (word.Matches(tentativeWord))
-                words.Add(tentativeWord);
-        }
+        var words = (from tentativeWord in wordList
+                     where word.Matches(tentativeWord)
+                     select tentativeWord).ToList();
         wordsAlreadyTried.Add(word);
         wordList = words;
-        return words;
+        var preferred = words.Where(w => w.Distinct().Count() == 5).ToList();
+        var others = words.Except(preferred).ToList();
+        return new(preferred, others);
     }
 
     public string SuggestRandomWord()
@@ -37,6 +36,8 @@ public class Words
         return wordsWithUniqueLetters[Random.Shared.Next(wordsWithUniqueLetters.Count)];
     }
 }
+
+public record struct Suggestion(List<string> Preferred, List<string> Others);
 
 public record struct Word(Letter L0, Letter L1, Letter L2, Letter L3, Letter L4)
 {

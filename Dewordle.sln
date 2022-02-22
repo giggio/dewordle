@@ -3,13 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dewordle", "Dewordle\Dewordle.csproj", "{B049F7A5-1449-49C0-96FA-74A61472562F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dewordle", "Dewordle\Dewordle.csproj", "{B049F7A5-1449-49C0-96FA-74A61472562F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{532B1DE9-1F65-4C1A-9827-2323F407BB53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{532B1DE9-1F65-4C1A-9827-2323F407BB53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dewordle.Model", "Dewordle.Model\Dewordle.Model.csproj", "{F93A9E64-E9CE-4022-A3B5-8FD13A7FA3C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dewordle.Model", "Dewordle.Model\Dewordle.Model.csproj", "{F93A9E64-E9CE-4022-A3B5-8FD13A7FA3C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dewordle.Terminal", "Dewordle.Terminal\Dewordle.Terminal.csproj", "{C0A37895-CF66-47AD-BD35-51B65C4B6B7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dewordle.Terminal", "Dewordle.Terminal\Dewordle.Terminal.csproj", "{C0A37895-CF66-47AD-BD35-51B65C4B6B7E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67772714-5453-40AB-B28F-49C234E7457A}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.gitmodules = .gitmodules
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

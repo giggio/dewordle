@@ -34,9 +34,10 @@ while (true)
     if (result == "exit")
         break;
     List<string>? suggestedWords;
+    List<string>? otherWords;
     try
     {
-        suggestedWords = words.Suggest(Word.FromString(result));
+        (suggestedWords, otherWords) = words.Suggest(Word.FromString(result));
     }
     catch (Exception ex) when (ex is WordParseException || ex is LetterParseException)
     {
@@ -56,7 +57,16 @@ while (true)
                 Write(", ");
         }
         WriteLine();
-        if (suggestedWords.Count == 1)
+        WriteLine("Other possible words are:");
+        for (int i = 0; i < otherWords.Count; i++)
+        {
+            var word = otherWords[i];
+            Write(word);
+            if (i != otherWords.Count - 1)
+                Write(", ");
+        }
+        WriteLine();
+        if (suggestedWords.Count + otherWords.Count == 1)
             break;
     }
     else
